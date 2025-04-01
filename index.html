@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Bootstrap 5</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Prism CSS para resaltado de código -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        /* Tema oscuro */
+        :root {
+            --bs-primary: #7952b3;
+            --bs-primary-rgb: 121, 82, 179;
+            --bs-body-bg: #121212;
+            --bs-body-color: #e0e0e0;
+            --bs-dark: #1e1e1e;
+            --bs-light: #2a2a2a;
+            --bs-border-color: #3a3a3a;
+        }
+
+        body {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+            padding-top: 56px;
+            position: relative;
+        }
+
+        .bd-navbar {
+            background-color: #7952b3;
+        }
+
+        .bd-toc {
+            position: sticky;
+            top: 5rem;
+            height: calc(100vh - 7rem);
+            overflow-y: auto;
+            padding-left: 1rem;
+            border-left: 1px solid var(--bs-border-color);
+        }
+
+        pre[class*="language-"] {
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            background-color: #1a1a1a !important;
+        }
+
+        .section-heading {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--bs-border-color);
+            color: #fff;
+        }
+
+        .example-preview {
+            padding: 1.5rem;
+            margin-right: 0;
+            margin-left: 0;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 0.5rem 0.5rem 0 0;
+            background-color: var(--bs-dark);
+        }
+
+        .code-preview {
+            border: 1px solid var(--bs-border-color);
+            border-top: 0;
+            border-radius: 0 0 0.5rem 0.5rem;
+            position: relative;
+            background-color: #1a1a1a;
+        }
+
+        .code-copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 10;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.25rem 0;
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+        }
+
+        .toc-link:hover {
+            color: var(--bs-primary);
+        }
+
+        .toc-link.active {
+            color: var(--bs-primary);
+            font-weight: 600;
+        }
+
+        .toc-section {
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .toc-subsection {
+            padding-left: 1rem;
+        }
+
+        .card,
+        .modal-content,
+        .alert {
+            background-color: var(--bs-dark);
+            border-color: var(--bs-border-color);
+        }
+
+        .table {
+            color: var(--bs-body-color);
+        }
+
+        .table-light {
+            background-color: var(--bs-light);
+            color: var(--bs-body-color);
+        }
+
+        .bg-light {
+            background-color: var(--bs-light) !important;
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, .5) !important;
+        }
+
+        .text-dark {
+            color: #e0e0e0 !important;
+        }
+
+        code {
+            color: #e83e8c;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bs-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#TableOfContents">
+    <!-- Navbar -->
+    <header class="navbar navbar-expand-lg navbar-dark bd-navbar fixed-top">
+        <nav class="container-xxl flex-wrap flex-lg-nowrap">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-bootstrap-fill"></i> Bootstrap 5 Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduccion">Introducción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sistema-grid">Sistema Grid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#componentes">Componentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#utilidades">Utilidades</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-xxl my-4">
+        <div class="row g-5">
+            <!-- Contenido principal -->
+            <div class="col-lg-9">
+                <main class="bd-main">
+                    <!-- Introducción -->
+                    <section id="introduccion">
+                        <h1 class="section-heading">Documentación de Bootstrap 5</h1>
+                        <p class="lead">Guía completa de Bootstrap 5 con ejemplos y explicaciones detalladas de cada
+                            componente y utilidad.</p>
+
+                        <h2 id="que-es-bootstrap" class="section-heading">¿Qué es Bootstrap?</h2>
+                        <p>Bootstrap es un framework CSS de código abierto que facilita el desarrollo de sitios web
+                            responsivos y adaptables a dispositivos móviles. Creado por Twitter, Bootstrap proporciona
+                            una colección de componentes, estilos y utilidades que aceleran el desarrollo web.</p>
+
+                        <h3>Características principales:</h3>
+                        <ul>
+                            <li><strong>Responsivo:</strong> Se adapta automáticamente a diferentes tamaños de pantalla.
+                            </li>
+                            <li><strong>Mobile-first:</strong> Diseñado pensando primero en dispositivos móviles.</li>
+                            <li><strong>Componentes prediseñados:</strong> Incluye botones, formularios, navegación,
+                                etc.</li>
+                            <li><strong>Sistema de grid:</strong> Facilita la creación de layouts complejos.</li>
+                            <li><strong>Utilidades CSS:</strong> Clases para espaciado, colores, flexbox, etc.</li>
+                            <li><strong>JavaScript incluido:</strong> Para componentes interactivos.</li>
+                        </ul>
+
+                        <h2 id="instalacion" class="section-heading">Instalación</h2>
+                        <p>Hay varias formas de incluir Bootstrap en tu proyecto:</p>
+
+                        <h3>1. Usando CDN (más fácil)</h3>
+                        <div class="example-preview">
+                            <p>Agrega estos enlaces en el <code>&lt;head&gt;</code> de tu HTML:</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- CSS de Bootstrap --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- JavaScript de Bootstrap (colócalo antes del cierre del body) --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <h3>2. Usando npm</h3>
+                        <div class="example-preview">
+                            <p>Instala Bootstrap usando npm:</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-bash">npm install bootstrap</code></pre>
+                        </div>
+
+                        <h3>3. Descargando los archivos</h3>
+                        <p>Puedes descargar los archivos compilados desde <a
+                                href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank">la
+                                página oficial de Bootstrap</a>.</p>
+
+                        <h2 id="breakpoints" class="section-heading">Breakpoints</h2>
+                        <p>Los breakpoints son puntos de quiebre que definen cuándo cambia el layout en diferentes
+                            tamaños de pantalla. Bootstrap 5 define estos breakpoints:</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Breakpoint</th>
+                                        <th>Prefijo de clase</th>
+                                        <th>Dimensión</th>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Extra pequeño</td>
+                                        <td><code>xs</code> (sin prefijo)</td>
+                                        <td>&lt; 576px</td>
+                                        <td>Smartphones en vertical</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pequeño</td>
+                                        <td><code>sm</code></td>
+                                        <td>≥ 576px</td>
+                                        <td>Smartphones en horizontal, tablets pequeñas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mediano</td>
+                                        <td><code>md</code></td>
+                                        <td>≥ 768px</td>
+                                        <td>Tablets</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grande</td>
+                                        <td><code>lg</code></td>
+                                        <td>≥ 992px</td>
+                                        <td>Laptops, desktops pequeños</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra grande</td>
+                                        <td><code>xl</code></td>
+                                        <td>≥ 1200px</td>
+                                        <td>Desktops</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra extra grande</td>
+                                        <td><code>xxl</code></td>
+                                        <td>≥ 1400px</td>
+                                        <td>Monitores grandes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p>Estos breakpoints se usan en clases como <code>col-md-6</code>, <code>d-lg-none</code>, etc.
+                        </p>
+
+                        <!-- Layout -->
+                        <h2 id="contenedores" class="section-heading">Contenedores</h2>
+                        <p>Los contenedores son el elemento de layout más básico en Bootstrap y son necesarios para usar
+                            el sistema de grid.</p>
+
+                        <h3>Tipos de contenedores:</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Clase</th>
+                                        <th>Descripción</th>
+                                        <th>Ancho máximo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>.container</code></td>
+                                        <td>Contenedor con ancho máximo que cambia en cada breakpoint</td>
+                                        <td>Varía según el breakpoint</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.container-fluid</code></td>
+                                        <td>Contenedor que ocupa el 100% del ancho en todos los breakpoints</td>
+                                        <td>100%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.container-{breakpoint}</code></td>
+                                        <td>100% de ancho hasta el breakpoint especificado, luego se comporta como
+                                            <code>.container</code>
+                                        </td>
+                                        <td>100% hasta el breakpoint</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="example-preview">
+                            <p>Ejemplo de uso de contenedores:</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- Contenedor responsive con ancho máximo --&gt;
+&lt;div class="container"&gt;
+  &lt;!-- Contenido --&gt;
+&lt;/div&gt;
+
+&lt;!-- Contenedor fluido (ancho completo) --&gt;
+&lt;div class="container-fluid"&gt;
+  &lt;!-- Contenido --&gt;
+&lt;/div&gt;
+
+&lt;!-- Contenedor responsivo a partir de md --&gt;
+&lt;div class="container-md"&gt;
+  &lt;!-- Contenido --&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="sistema-grid" class="section-heading">Sistema Grid</h2>
+                        <p>El sistema de grid de Bootstrap se basa en un layout de 12 columnas que se adapta a
+                            diferentes tamaños de pantalla.</p>
+
+                        <h3>Estructura básica:</h3>
+                        <ol>
+                            <li>Contenedor (<code>.container</code> o <code>.container-fluid</code>)</li>
+                            <li>Filas (<code>.row</code>)</li>
+                            <li>Columnas (<code>.col-*</code>)</li>
+                        </ol>
+
+                        <div class="example-preview">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-2">
+                                        <div class="p-3 bg-primary text-white">Columna 1</div>
+                                    </div>
+                                    <div class="col-sm-4 mb-2">
+                                        <div class="p-3 bg-primary text-white">Columna 2</div>
+                                    </div>
+                                    <div class="col-sm-4 mb-2">
+                                        <div class="p-3 bg-primary text-white">Columna 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm-4"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna 3&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="columnas" class="section-heading">Columnas</h2>
+                        <p>Las columnas son el componente principal del sistema de grid. Bootstrap divide el ancho
+                            disponible en 12 columnas que puedes combinar.</p>
+
+                        <h3>Clases de columnas:</h3>
+                        <ul>
+                            <li><code>.col</code>: Columna de ancho automático (comparte el espacio disponible)</li>
+                            <li><code>.col-{número}</code>: Columna que ocupa un número específico de las 12 columnas
+                            </li>
+                            <li><code>.col-{breakpoint}-{número}</code>: Columna que ocupa un número específico a partir
+                                del breakpoint indicado</li>
+                        </ul>
+
+                        <div class="example-preview">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-8 mb-2">
+                                        <div class="p-3 bg-primary text-white">col-12 col-md-8</div>
+                                    </div>
+                                    <div class="col-6 col-md-4 mb-2">
+                                        <div class="p-3 bg-primary text-white">col-6 col-md-4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-12 col-md-8"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;col-12 col-md-8&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-6 col-md-4"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;col-6 col-md-4&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Columnas de ancho automático:</h3>
+                        <div class="example-preview">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <div class="p-3 bg-primary text-white">1 de 3</div>
+                                    </div>
+                                    <div class="col mb-2">
+                                        <div class="p-3 bg-primary text-white">2 de 3</div>
+                                    </div>
+                                    <div class="col mb-2">
+                                        <div class="p-3 bg-primary text-white">3 de 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;1 de 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;2 de 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;3 de 3&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Alineación vertical de columnas:</h3>
+                        <div class="example-preview">
+                            <div class="container">
+                                <div class="row align-items-start" style="height: 100px; background-color: #2a2a2a;">
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Arriba</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Arriba</div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-2"
+                                    style="height: 100px; background-color: #2a2a2a;">
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Centro</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Centro</div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-end mt-2" style="height: 100px; background-color: #2a2a2a;">
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Abajo</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 bg-primary text-white">Abajo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="row align-items-start" style="height: 100px;"&gt;
+  &lt;div class="col"&gt;Arriba&lt;/div&gt;
+  &lt;div class="col"&gt;Arriba&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row align-items-center" style="height: 100px;"&gt;
+  &lt;div class="col"&gt;Centro&lt;/div&gt;
+  &lt;div class="col"&gt;Centro&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row align-items-end" style="height: 100px;"&gt;
+  &lt;div class="col"&gt;Abajo&lt;/div&gt;
+  &lt;div class="col"&gt;Abajo&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="gutters" class="section-heading">Gutters</h2>
+                        <p>Los gutters son los espacios entre columnas. Bootstrap 5 usa la clase <code>g-*</code> para
+                            controlar estos espacios.</p>
+
+                        <div class="example-preview">
+                            <div class="container">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="p-3 bg-primary text-white">Columna con gutter</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-primary text-white">Columna con gutter</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-primary text-white">Columna con gutter</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-primary text-white">Columna con gutter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row g-3"&gt;
+    &lt;div class="col-6"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna con gutter&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-6"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna con gutter&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-6"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna con gutter&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-6"&gt;
+      &lt;div class="p-3 bg-primary text-white"&gt;Columna con gutter&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <p>También puedes usar <code>gx-*</code> para gutters horizontales y <code>gy-*</code> para
+                            gutters verticales.</p>
+
+                        <!-- Componentes -->
+                        <h2 id="componentes" class="section-heading">Componentes</h2>
+
+                        <h2 id="alertas" class="section-heading">Alertas</h2>
+                        <p>Las alertas son mensajes informativos, de éxito, advertencia o error.</p>
+
+                        <div class="example-preview">
+                            <div class="alert alert-primary" role="alert">
+                                Esta es una alerta primaria
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                Esta es una alerta de éxito
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                                Esta es una alerta de peligro
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                Esta es una alerta de advertencia
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                Esta es una alerta informativa
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="alert alert-primary" role="alert"&gt;
+  Esta es una alerta primaria
+&lt;/div&gt;
+&lt;div class="alert alert-success" role="alert"&gt;
+  Esta es una alerta de éxito
+&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;
+  Esta es una alerta de peligro
+&lt;/div&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;
+  Esta es una alerta de advertencia
+&lt;/div&gt;
+&lt;div class="alert alert-info" role="alert"&gt;
+  Esta es una alerta informativa
+&lt;/div&gt;</code></pre>
+                        </div>
+                        <h3>Alertas con contenido adicional</h3>
+                        <div class="example-preview">
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">¡Bien hecho!</h4>
+                                <p>Has completado correctamente esta tarea.</p>
+                                <hr>
+                                <p class="mb-0">Asegúrate de revisar las instrucciones para la siguiente tarea.</p>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="alert alert-success" role="alert"&gt;
+  &lt;h4 class="alert-heading"&gt;¡Bien hecho!&lt;/h4&gt;
+  &lt;p&gt;Has completado correctamente esta tarea.&lt;/p&gt;
+  &lt;hr&gt;
+  &lt;p class="mb-0"&gt;Asegúrate de revisar las instrucciones para la siguiente tarea.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Alertas descartables</h3>
+                        <div class="example-preview">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>¡Atención!</strong> Esta alerta puede ser cerrada.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="alert alert-warning alert-dismissible fade show" role="alert"&gt;
+  &lt;strong&gt;¡Atención!&lt;/strong&gt; Esta alerta puede ser cerrada.
+  &lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="botones" class="section-heading">Botones</h2>
+                        <p>Bootstrap ofrece varios estilos de botones para diferentes acciones y contextos.</p>
+
+                        <h3>Estilos de botones</h3>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-primary">Primary</button>
+                            <button type="button" class="btn btn-secondary">Secondary</button>
+                            <button type="button" class="btn btn-success">Success</button>
+                            <button type="button" class="btn btn-danger">Danger</button>
+                            <button type="button" class="btn btn-warning">Warning</button>
+                            <button type="button" class="btn btn-info">Info</button>
+                            <button type="button" class="btn btn-light">Light</button>
+                            <button type="button" class="btn btn-dark">Dark</button>
+                            <button type="button" class="btn btn-link">Link</button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;
+&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;
+&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <h3>Botones outline</h3>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-outline-primary">Primary</button>
+                            <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                            <button type="button" class="btn btn-outline-success">Success</button>
+                            <button type="button" class="btn btn-outline-danger">Danger</button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-success"&gt;Success&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-danger"&gt;Danger&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <h3>Tamaños de botones</h3>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-primary btn-lg">Botón grande</button>
+                            <button type="button" class="btn btn-primary">Botón normal</button>
+                            <button type="button" class="btn btn-primary btn-sm">Botón pequeño</button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-primary btn-lg"&gt;Botón grande&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary"&gt;Botón normal&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary btn-sm"&gt;Botón pequeño&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <h3>Estados de botones</h3>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-primary" disabled>Botón desactivado</button>
+                            <button type="button" class="btn btn-primary active">Botón activo</button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-primary" disabled&gt;Botón desactivado&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary active"&gt;Botón activo&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <h3>Grupo de botones</h3>
+                        <div class="example-preview">
+                            <div class="btn-group" role="group" aria-label="Grupo de botones básico">
+                                <button type="button" class="btn btn-primary">Izquierda</button>
+                                <button type="button" class="btn btn-primary">Centro</button>
+                                <button type="button" class="btn btn-primary">Derecha</button>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="btn-group" role="group" aria-label="Grupo de botones básico"&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Izquierda&lt;/button&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Centro&lt;/button&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Derecha&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="cards" class="section-heading">Cards</h2>
+                        <p>Las cards son contenedores flexibles con múltiples variantes y opciones.</p>
+
+                        <h3>Card básica</h3>
+                        <div class="example-preview">
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top"
+                                    alt="Imagen de ejemplo">
+                                <div class="card-body">
+                                    <h5 class="card-title">Título de la card</h5>
+                                    <p class="card-text">Un ejemplo de texto rápido para colocar en la card y hacer de
+                                        su título.</p>
+                                    <a href="#" class="btn btn-primary">Ir a algún lado</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="imagen.jpg" class="card-img-top" alt="Imagen de ejemplo"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Título de la card&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Un ejemplo de texto rápido para colocar en la card y hacer de su título.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Ir a algún lado&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Card con cabecera y pie</h3>
+                        <div class="example-preview">
+                            <div class="card">
+                                <div class="card-header">
+                                    Cabecera
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Título especial</h5>
+                                    <p class="card-text">Con texto de apoyo a continuación como introducción natural a
+                                        contenido adicional.</p>
+                                    <a href="#" class="btn btn-primary">Ir a algún lado</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Hace 2 días
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    Cabecera
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Título especial&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Con texto de apoyo a continuación como introducción natural a contenido adicional.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Ir a algún lado&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer text-muted"&gt;
+    Hace 2 días
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Grupo de cards</h3>
+                        <div class="example-preview">
+                            <div class="card-group">
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título de la card 1</h5>
+                                        <p class="card-text">Contenido de la card 1.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título de la card 2</h5>
+                                        <p class="card-text">Contenido de la card 2.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título de la card 3</h5>
+                                        <p class="card-text">Contenido de la card 3.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="card-group"&gt;
+  &lt;div class="card"&gt;
+    &lt;img src="imagen1.jpg" class="card-img-top" alt="..."&gt;
+    &lt;div class="card-body"&gt;
+      &lt;h5 class="card-title"&gt;Título de la card 1&lt;/h5&gt;
+      &lt;p class="card-text"&gt;Contenido de la card 1.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="card"&gt;
+    &lt;img src="imagen2.jpg" class="card-img-top" alt="..."&gt;
+    &lt;div class="card-body"&gt;
+      &lt;h5 class="card-title"&gt;Título de la card 2&lt;/h5&gt;
+      &lt;p class="card-text"&gt;Contenido de la card 2.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="card"&gt;
+    &lt;img src="imagen3.jpg" class="card-img-top" alt="..."&gt;
+    &lt;div class="card-body"&gt;
+      &lt;h5 class="card-title"&gt;Título de la card 3&lt;/h5&gt;
+      &lt;p class="card-text"&gt;Contenido de la card 3.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="navbar" class="section-heading">Navbar</h2>
+                        <p>La navbar es un componente de navegación principal que puede adaptarse a diferentes tamaños
+                            de pantalla.</p>
+
+                        <h3>Navbar básica</h3>
+                        <div class="example-preview">
+                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                                <div class="container-fluid">
+                                    <a class="navbar-brand" href="#">Navbar</a>
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Enlace</a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Dropdown
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <li><a class="dropdown-item" href="#">Acción</a></li>
+                                                    <li><a class="dropdown-item" href="#">Otra acción</a></li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <form class="d-flex">
+                                            <input class="form-control me-2" type="search" placeholder="Buscar"
+                                                aria-label="Search">
+                                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+      &lt;ul class="navbar-nav me-auto mb-2 mb-lg-0"&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link active" aria-current="page" href="#"&gt;Inicio&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Enlace&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item dropdown"&gt;
+          &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"&gt;
+            Dropdown
+          &lt;/a&gt;
+          &lt;ul class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Acción&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Otra acción&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;hr class="dropdown-divider"&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Algo más aquí&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;form class="d-flex"&gt;
+        &lt;input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"&gt;
+        &lt;button class="btn btn-outline-success" type="submit"&gt;Buscar&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3>Explicación detallada de la Navbar</h3>
+                        <p>Vamos a analizar cada parte de la navbar:</p>
+
+                        <ul>
+                            <li><code>navbar</code>: Clase base para la barra de navegación.</li>
+                            <li><code>navbar-expand-lg</code>: Hace que la navbar se expanda en pantallas grandes
+                                (≥992px). En pantallas más pequeñas, se colapsa en un botón hamburguesa.</li>
+                            <li><code>navbar-dark</code>: Establece el tema oscuro para la navbar (texto claro sobre
+                                fondo oscuro).</li>
+                            <li><code>bg-dark</code>: Establece el fondo oscuro para la navbar.</li>
+                            <li><code>container-fluid</code>: Contenedor que ocupa el 100% del ancho.</li>
+                            <li><code>navbar-brand</code>: Estilo para el logo o nombre del sitio.</li>
+                            <li><code>navbar-toggler</code>: El botón que aparece en pantallas pequeñas para
+                                mostrar/ocultar el menú.</li>
+                            <li><code>data-bs-toggle="collapse"</code>: Indica que este botón controla un elemento
+                                colapsable.</li>
+                            <li><code>data-bs-target="#navbarSupportedContent"</code>: Especifica qué elemento
+                                colapsará/expandirá.</li>
+                            <li><code>navbar-toggler-icon</code>: El icono de hamburguesa dentro del botón.</li>
+                            <li><code>collapse navbar-collapse</code>: El contenedor que se colapsa en pantallas
+                                pequeñas.</li>
+                            <li><code>navbar-nav</code>: Lista no ordenada con estilo de navegación.</li>
+                            <li><code>me-auto</code>: Margin-end auto, empuja los elementos a la izquierda.</li>
+                            <li><code>nav-item</code>: Elemento de lista para cada ítem de navegación.</li>
+                            <li><code>nav-link</code>: Estilo para los enlaces dentro de la navegación.</li>
+                            <li><code>active</code>: Indica el ítem actualmente seleccionado.</li>
+                            <li><code>dropdown</code>: Clase para elementos desplegables.</li>
+                            <li><code>dropdown-toggle</code>: Estilo para el botón que abre el menú desplegable.</li>
+                            <li><code>dropdown-menu</code>: El menú desplegable.</li>
+                            <li><code>dropdown-item</code>: Elementos dentro del menú desplegable.</li>
+                            <li><code>dropdown-divider</code>: Línea divisoria dentro del menú desplegable.</li>
+                            <li><code>d-flex</code>: Display flex para el formulario de búsqueda.</li>
+                        </ul>
+
+                        <h2 id="modals" class="section-heading">Modals</h2>
+                        <p>Los modals son diálogos o ventanas emergentes que aparecen sobre el contenido actual.</p>
+
+                        <h3>Modal básico</h3>
+                        <div class="example-preview">
+                            <!-- Botón para abrir el modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Abrir modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Contenido del modal...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- Botón para abrir el modal --&gt;
+&lt;button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"&gt;
+  Abrir modal
+&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title" id="exampleModalLabel"&gt;Título del modal&lt;/h5&gt;
+        &lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        Contenido del modal...
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-secondary" data-bs-dismiss="modal"&gt;Cerrar&lt;/button&gt;
+        &lt;button type="button" class="btn btn-primary"&gt;Guardar cambios&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Explicación detallada del Modal</h3>
+                        <p>Vamos a analizar cada parte del modal:</p>
+
+                        <ul>
+                            <li><code>data-bs-toggle="modal"</code>: Indica que este botón controla un modal.</li>
+                            <li><code>data-bs-target="#exampleModal"</code>: Especifica qué modal abrirá.</li>
+                            <li><code>modal fade</code>: Clase base para modales con animación de desvanecimiento.</li>
+                            <li><code>modal-dialog</code>: Contenedor que posiciona el modal en la pantalla.</li>
+                            <li><code>modal-content</code>: Contenedor del contenido del modal.</li>
+                            <li><code>modal-header</code>: Encabezado del modal.</li>
+                            <li><code>modal-title</code>: Título del modal.</li>
+                            <li><code>btn-close</code>: Botón para cerrar el modal (X).</li>
+                            <li><code>data-bs-dismiss="modal"</code>: Indica que este botón cierra el modal.</li>
+                            <li><code>modal-body</code>: Cuerpo del modal donde va el contenido principal.</li>
+                            <li><code>modal-footer</code>: Pie del modal donde van los botones de acción.</li>
+                        </ul>
+
+                        <!-- Utilidades -->
+                        <h2 id="utilidades" class="section-heading">Utilidades</h2>
+                        <p>Bootstrap proporciona numerosas clases utilitarias para aplicar estilos comunes sin necesidad
+                            de escribir CSS personalizado.</p>
+
+                        <h2 id="espaciado" class="section-heading">Espaciado (Margin y Padding)</h2>
+                        <p>Bootstrap incluye un sistema de espaciado consistente para márgenes y padding.</p>
+
+                        <h3>Formato de clases de espaciado</h3>
+                        <p><code>{propiedad}{lados}-{tamaño}</code></p>
+
+                        <h4>Propiedad:</h4>
+                        <ul>
+                            <li><code>m</code> - para clases que establecen <code>margin</code></li>
+                            <li><code>p</code> - para clases que establecen <code>padding</code></li>
+                        </ul>
+
+                        <h4>Lados:</h4>
+                        <ul>
+                            <li><code>t</code> - para clases que establecen <code>margin-top</code> o
+                                <code>padding-top</code>
+                            </li>
+                            <li><code>b</code> - para clases que establecen <code>margin-bottom</code> o
+                                <code>padding-bottom</code>
+                            </li>
+                            <li><code>s</code> - para clases que establecen <code>margin-left</code> o
+                            <li><code>s</code> - para clases que establecen <code>margin-left</code> o
+                                <code>padding-left</code> en LTR, <code>margin-right</code> o <code>padding-right</code>
+                                en RTL
+                            </li>
+                            <li><code>e</code> - para clases que establecen <code>margin-right</code> o
+                                <code>padding-right</code> en LTR, <code>margin-left</code> o <code>padding-left</code>
+                                en RTL
+                            </li>
+                            <li><code>x</code> - para clases que establecen tanto <code>*-left</code> como
+                                <code>*-right</code>
+                            </li>
+                            <li><code>y</code> - para clases que establecen tanto <code>*-top</code> como
+                                <code>*-bottom</code>
+                            </li>
+                            <li>en blanco - para clases que establecen un <code>margin</code> o <code>padding</code> en
+                                los 4 lados del elemento</li>
+                        </ul>
+
+                        <h4>Tamaños:</h4>
+                        <ul>
+                            <li><code>0</code> - para clases que eliminan el <code>margin</code> o <code>padding</code>
+                                estableciendo a 0</li>
+                            <li><code>1</code> - para clases que establecen <code>margin</code> o <code>padding</code> a
+                                <code>$spacer * .25</code> (0.25rem = 4px)
+                            </li>
+                            <li><code>2</code> - para clases que establecen <code>margin</code> o <code>padding</code> a
+                                <code>$spacer * .5</code> (0.5rem = 8px)
+                            </li>
+                            <li><code>3</code> - para clases que establecen <code>margin</code> o <code>padding</code> a
+                                <code>$spacer</code> (1rem = 16px)
+                            </li>
+                            <li><code>4</code> - para clases que establecen <code>margin</code> o <code>padding</code> a
+                                <code>$spacer * 1.5</code> (1.5rem = 24px)
+                            </li>
+                            <li><code>5</code> - para clases que establecen <code>margin</code> o <code>padding</code> a
+                                <code>$spacer * 3</code> (3rem = 48px)
+                            </li>
+                            <li><code>auto</code> - para clases que establecen <code>margin</code> a auto</li>
+                        </ul>
+
+                        <div class="example-preview">
+                            <div class="bg-light p-3 mb-2">p-3: Padding de 1rem (16px) en todos los lados</div>
+                            <div class="bg-light pt-3 mb-2">pt-3: Padding-top de 1rem</div>
+                            <div class="bg-light pb-3 mb-2">pb-3: Padding-bottom de 1rem</div>
+                            <div class="bg-light ps-3 mb-2">ps-3: Padding-left de 1rem</div>
+                            <div class="bg-light pe-3 mb-2">pe-3: Padding-right de 1rem</div>
+                            <div class="bg-light px-3 mb-2">px-3: Padding horizontal de 1rem</div>
+                            <div class="bg-light py-3 mb-2">py-3: Padding vertical de 1rem</div>
+                            <div class="bg-light m-3">m-3: Margin de 1rem en todos los lados</div>
+                            <div class="d-flex justify-content-between bg-light p-2 mt-3">
+                                <div class="bg-primary text-white p-2">Elemento izquierdo</div>
+                                <div class="bg-primary text-white p-2">Elemento derecho</div>
+                            </div>
+                            <div class="d-flex justify-content-between bg-light p-2 mt-3">
+                                <div class="bg-primary text-white p-2 me-auto">me-auto: Empuja a la izquierda</div>
+                                <div class="bg-primary text-white p-2">Elemento derecho</div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="p-3"&gt;Padding de 1rem (16px) en todos los lados&lt;/div&gt;
+    &lt;div class="pt-3"&gt;Padding-top de 1rem&lt;/div&gt;
+    &lt;div class="pb-3"&gt;Padding-bottom de 1rem&lt;/div&gt;
+    &lt;div class="ps-3"&gt;Padding-left de 1rem&lt;/div&gt;
+    &lt;div class="pe-3"&gt;Padding-right de 1rem&lt;/div&gt;
+    &lt;div class="px-3"&gt;Padding horizontal de 1rem&lt;/div&gt;
+    &lt;div class="py-3"&gt;Padding vertical de 1rem&lt;/div&gt;
+    &lt;div class="m-3"&gt;Margin de 1rem en todos los lados&lt;/div&gt;
+    
+    &lt;!-- Ejemplo de me-auto --&gt;
+    &lt;div class="d-flex justify-content-between"&gt;
+      &lt;div class="me-auto"&gt;me-auto: Empuja a la izquierda&lt;/div&gt;
+      &lt;div&gt;Elemento derecho&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="colores" class="section-heading">Colores</h2>
+                        <p>Bootstrap incluye un conjunto de colores predefinidos para texto y fondos.</p>
+
+                        <h3>Colores de texto</h3>
+                        <div class="example-preview">
+                            <p class="text-primary">.text-primary</p>
+                            <p class="text-secondary">.text-secondary</p>
+                            <p class="text-success">.text-success</p>
+                            <p class="text-danger">.text-danger</p>
+                            <p class="text-warning">.text-warning</p>
+                            <p class="text-info">.text-info</p>
+                            <p class="text-light bg-dark">.text-light</p>
+                            <p class="text-dark">.text-dark</p>
+                            <p class="text-muted">.text-muted</p>
+                            <p class="text-white bg-dark">.text-white</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p class="text-primary"&gt;.text-primary&lt;/p&gt;
+    &lt;p class="text-secondary"&gt;.text-secondary&lt;/p&gt;
+    &lt;p class="text-success"&gt;.text-success&lt;/p&gt;
+    &lt;p class="text-danger"&gt;.text-danger&lt;/p&gt;
+    &lt;p class="text-warning"&gt;.text-warning&lt;/p&gt;
+    &lt;p class="text-info"&gt;.text-info&lt;/p&gt;
+    &lt;p class="text-light bg-dark"&gt;.text-light&lt;/p&gt;
+    &lt;p class="text-dark"&gt;.text-dark&lt;/p&gt;
+    &lt;p class="text-muted"&gt;.text-muted&lt;/p&gt;
+    &lt;p class="text-white bg-dark"&gt;.text-white&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <h3>Colores de fondo</h3>
+                        <div class="example-preview">
+                            <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+                            <div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+                            <div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+                            <div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+                            <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+                            <div class="p-3 mb-2 bg-info text-dark">.bg-info</div>
+                            <div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+                            <div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+                            <div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="p-3 mb-2 bg-primary text-white"&gt;.bg-primary&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-secondary text-white"&gt;.bg-secondary&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-success text-white"&gt;.bg-success&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-danger text-white"&gt;.bg-danger&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-warning text-dark"&gt;.bg-warning&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-info text-dark"&gt;.bg-info&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-light text-dark"&gt;.bg-light&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-dark text-white"&gt;.bg-dark&lt;/div&gt;
+    &lt;div class="p-3 mb-2 bg-white text-dark"&gt;.bg-white&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="flex" class="section-heading">Flex</h2>
+                        <p>Bootstrap proporciona un conjunto completo de utilidades flexbox para crear layouts
+                            flexibles.</p>
+
+                        <h3>Contenedor flex</h3>
+                        <div class="example-preview">
+                            <div class="d-flex p-2 bg-light mb-2">Soy un contenedor flexbox</div>
+                            <div class="d-inline-flex p-2 bg-light">Soy un contenedor flexbox inline</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-flex p-2"&gt;Soy un contenedor flexbox&lt;/div&gt;
+    &lt;div class="d-inline-flex p-2"&gt;Soy un contenedor flexbox inline&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Dirección</h3>
+                        <div class="example-preview">
+                            <div class="d-flex flex-row bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item 1</div>
+                                <div class="p-2 bg-primary text-white">Flex item 2</div>
+                                <div class="p-2 bg-primary text-white">Flex item 3</div>
+                            </div>
+                            <div class="d-flex flex-row-reverse bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item 1</div>
+                                <div class="p-2 bg-primary text-white">Flex item 2</div>
+                                <div class="p-2 bg-primary text-white">Flex item 3</div>
+                            </div>
+                            <div class="d-flex flex-column bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item 1</div>
+                                <div class="p-2 bg-primary text-white">Flex item 2</div>
+                                <div class="p-2 bg-primary text-white">Flex item 3</div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-flex flex-row"&gt;
+      &lt;div class="p-2"&gt;Flex item 1&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 2&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 3&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="d-flex flex-row-reverse"&gt;
+      &lt;div class="p-2"&gt;Flex item 1&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 2&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 3&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="d-flex flex-column"&gt;
+      &lt;div class="p-2"&gt;Flex item 1&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 2&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item 3&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Justificación de contenido</h3>
+                        <div class="example-preview">
+                            <div class="d-flex justify-content-start bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex justify-content-end bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex justify-content-center bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex justify-content-between bg-light mb-3">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex justify-content-around bg-light">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-flex justify-content-start"&gt;...&lt;/div&gt;
+    &lt;div class="d-flex justify-content-end"&gt;...&lt;/div&gt;
+    &lt;div class="d-flex justify-content-center"&gt;...&lt;/div&gt;
+    &lt;div class="d-flex justify-content-between"&gt;...&lt;/div&gt;
+    &lt;div class="d-flex justify-content-around"&gt;...&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Alineación de elementos</h3>
+                        <div class="example-preview">
+                            <div class="d-flex align-items-start bg-light" style="height: 100px;">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex align-items-center bg-light mt-3" style="height: 100px;">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                            <div class="d-flex align-items-end bg-light mt-3" style="height: 100px;">
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                                <div class="p-2 bg-primary text-white">Flex item</div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-flex align-items-start" style="height: 100px;"&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="d-flex align-items-center" style="height: 100px;"&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="d-flex align-items-end" style="height: 100px;"&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+      &lt;div class="p-2"&gt;Flex item&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="display" class="section-heading">Display</h2>
+                        <p>Las utilidades de display controlan cómo se muestra un elemento.</p>
+
+                        <h3>Clases de display</h3>
+                        <div class="example-preview">
+                            <div class="d-inline p-2 bg-primary text-white">d-inline</div>
+                            <div class="d-inline p-2 bg-dark text-white">d-inline</div>
+                            <span class="d-block p-2 bg-primary text-white mt-3">d-block</span>
+                            <span class="d-block p-2 bg-dark text-white">d-block</span>
+                            <div class="d-flex p-2 bg-primary text-white mt-3">d-flex</div>
+                            <div class="d-none p-2 bg-dark text-white">d-none (este elemento está oculto)</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-inline p-2 bg-primary text-white"&gt;d-inline&lt;/div&gt;
+    &lt;div class="d-inline p-2 bg-dark text-white"&gt;d-inline&lt;/div&gt;
+    
+    &lt;span class="d-block p-2 bg-primary text-white"&gt;d-block&lt;/span&gt;
+    &lt;span class="d-block p-2 bg-dark text-white"&gt;d-block&lt;/span&gt;
+    
+    &lt;div class="d-flex p-2 bg-primary text-white"&gt;d-flex&lt;/div&gt;
+    
+    &lt;div class="d-none p-2 bg-dark text-white"&gt;d-none (este elemento está oculto)&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Display responsive</h3>
+                        <p>Las clases de display también se pueden aplicar a breakpoints específicos.</p>
+
+                        <div class="example-preview">
+                            <div class="d-none d-sm-block bg-primary text-white p-2">Oculto en xs, visible en sm y
+                                superiores</div>
+                            <div class="d-block d-md-none bg-dark text-white p-2 mt-3">Visible en xs y sm, oculto en md
+                                y superiores</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="d-none d-sm-block"&gt;Oculto en xs, visible en sm y superiores&lt;/div&gt;
+    &lt;div class="d-block d-md-none"&gt;Visible en xs y sm, oculto en md y superiores&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="posicionamiento" class="section-heading">Posicionamiento</h2>
+                        <p>Bootstrap proporciona clases para controlar la posición de elementos.</p>
+
+                        <h3>Clases de posición</h3>
+                        <div class="example-preview position-relative" style="height: 200px; background: #2a2a2a;">
+                            <div class="position-static p-2 bg-primary text-white">Posición estática</div>
+                            <div class="position-relative p-2 bg-success text-white">Posición relativa</div>
+                            <div class="position-absolute p-2 bg-danger text-white"
+                                style="top: 50%; left: 50%; transform: translate(-50%, -50%);">Posición absoluta
+                                (centrado)</div>
+                            <div class="position-sticky p-2 bg-info text-white" style="top: 0;">Posición sticky</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="position-static"&gt;Posición estática&lt;/div&gt;
+    &lt;div class="position-relative"&gt;Posición relativa&lt;/div&gt;
+    &lt;div class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"&gt;Posición absoluta (centrado)&lt;/div&gt;
+    &lt;div class="position-sticky" style="top: 0;"&gt;Posición sticky&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Clases de posición fija</h3>
+                        <div class="example-preview">
+                            <div class="bd-example-positions">
+                                <div class="position-relative" style="height: 200px; background: #2a2a2a;">
+                                    <div class="position-absolute top-0 start-0 p-2 bg-primary text-white">top-0 start-0
+                                    </div>
+                                    <div class="position-absolute top-0 end-0 p-2 bg-primary text-white">top-0 end-0
+                                    </div>
+                                    <div class="position-absolute top-50 start-50 p-2 bg-primary text-white">top-50
+                                        start-50</div>
+                                    <div class="position-absolute bottom-0 start-0 p-2 bg-primary text-white">bottom-0
+                                        start-0</div>
+                                    <div class="position-absolute bottom-0 end-0 p-2 bg-primary text-white">bottom-0
+                                        end-0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="position-relative"&gt;
+      &lt;div class="position-absolute top-0 start-0"&gt;top-0 start-0&lt;/div&gt;
+      &lt;div class="position-absolute top-0 end-0"&gt;top-0 end-0&lt;/div&gt;
+      &lt;div class="position-absolute top-50 start-50"&gt;top-50 start-50&lt;/div&gt;
+      &lt;div class="position-absolute bottom-0 start-0"&gt;bottom-0 start-0&lt;/div&gt;
+      &lt;div class="position-absolute bottom-0 end-0"&gt;bottom-0 end-0&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="texto" class="section-heading">Texto</h2>
+                        <p>Bootstrap proporciona varias clases para controlar la apariencia del texto.</p>
+
+                        <h3>Alineación de texto</h3>
+                        <div class="example-preview">
+                            <p class="text-start">Texto alineado a la izquierda.</p>
+                            <p class="text-center">Texto centrado.</p>
+                            <p class="text-end">Texto alineado a la derecha.</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p class="text-start"&gt;Texto alineado a la izquierda.&lt;/p&gt;
+    &lt;p class="text-center"&gt;Texto centrado.&lt;/p&gt;
+    &lt;p class="text-end"&gt;Texto alineado a la derecha.&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <h3>Transformación de texto</h3>
+                        <div class="example-preview">
+                            <p class="text-lowercase">TEXTO EN MINÚSCULAS.</p>
+                            <p class="text-uppercase">texto en mayúsculas.</p>
+                            <p class="text-capitalize">texto capitalizado.</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p class="text-lowercase"&gt;TEXTO EN MINÚSCULAS.&lt;/p&gt;
+    &lt;p class="text-uppercase"&gt;texto en mayúsculas.&lt;/p&gt;
+    &lt;p class="text-capitalize"&gt;texto capitalizado.&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <h3>Peso de fuente y estilo</h3>
+                        <div class="example-preview">
+                            <p class="fw-bold">Texto en negrita.</p>
+                            <p class="fw-bolder">Texto más negrita.</p>
+                            <p class="fw-normal">Texto normal.</p>
+                            <p class="fw-light">Texto ligero.</p>
+                            <p class="fw-lighter">Texto más ligero.</p>
+                            <p class="fst-italic">Texto en cursiva.</p>
+                            <p class="fst-normal">Texto con estilo normal.</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p class="fw-bold"&gt;Texto en negrita.&lt;/p&gt;
+    &lt;p class="fw-bolder"&gt;Texto más negrita.&lt;/p&gt;
+    &lt;p class="fw-normal"&gt;Texto normal.&lt;/p&gt;
+    &lt;p class="fw-light"&gt;Texto ligero.&lt;/p&gt;
+    &lt;p class="fw-lighter"&gt;Texto más ligero.&lt;
+    &lt;p class="fw-lighter"&gt;Texto más ligero.&lt;/p&gt;
+&lt;p class="fst-italic"&gt;Texto en cursiva.&lt;/p&gt;
+&lt;p class="fst-normal"&gt;Texto con estilo normal.&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <h2 id="bordes" class="section-heading">Bordes</h2>
+                        <p>Bootstrap proporciona clases para agregar o quitar bordes.</p>
+
+                        <h3>Agregar bordes</h3>
+                        <div class="example-preview">
+                            <span class="border p-2 me-2 d-inline-block"></span>
+                            <span class="border-top p-2 me-2 d-inline-block"></span>
+                            <span class="border-end p-2 me-2 d-inline-block"></span>
+                            <span class="border-bottom p-2 me-2 d-inline-block"></span>
+                            <span class="border-start p-2 d-inline-block"></span>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;span class="border"&gt;&lt;/span&gt;
+&lt;span class="border-top"&gt;&lt;/span&gt;
+&lt;span class="border-end"&gt;&lt;/span&gt;
+&lt;span class="border-bottom"&gt;&lt;/span&gt;
+&lt;span class="border-start"&gt;&lt;/span&gt;</code></pre>
+                        </div>
+
+                        <h3>Colores de borde</h3>
+                        <div class="example-preview">
+                            <span class="border border-primary p-2 me-2 d-inline-block"></span>
+                            <span class="border border-secondary p-2 me-2 d-inline-block"></span>
+                            <span class="border border-success p-2 me-2 d-inline-block"></span>
+                            <span class="border border-danger p-2 me-2 d-inline-block"></span>
+                            <span class="border border-warning p-2 me-2 d-inline-block"></span>
+                            <span class="border border-info p-2 me-2 d-inline-block"></span>
+                            <span class="border border-light p-2 me-2 d-inline-block"></span>
+                            <span class="border border-dark p-2 me-2 d-inline-block"></span>
+                            <span class="border border-white p-2 d-inline-block"></span>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;span class="border border-primary"&gt;&lt;/span&gt;
+&lt;span class="border border-secondary"&gt;&lt;/span&gt;
+&lt;span class="border border-success"&gt;&lt;/span&gt;
+&lt;span class="border border-danger"&gt;&lt;/span&gt;
+&lt;span class="border border-warning"&gt;&lt;/span&gt;
+&lt;span class="border border-info"&gt;&lt;/span&gt;
+&lt;span class="border border-light"&gt;&lt;/span&gt;
+&lt;span class="border border-dark"&gt;&lt;/span&gt;
+&lt;span class="border border-white"&gt;&lt;/span&gt;</code></pre>
+                        </div>
+
+                        <h3>Radios de borde</h3>
+                        <div class="example-preview">
+                            <span class="border rounded p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-top p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-end p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-bottom p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-start p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-circle p-2 me-2 d-inline-block"></span>
+                            <span class="border rounded-pill p-2 d-inline-block" style="width: 80px;"></span>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;span class="border rounded"&gt;&lt;/span&gt;
+&lt;span class="border rounded-top"&gt;&lt;/span&gt;
+&lt;span class="border rounded-end"&gt;&lt;/span&gt;
+&lt;span class="border rounded-bottom"&gt;&lt;/span&gt;
+&lt;span class="border rounded-start"&gt;&lt;/span&gt;
+&lt;span class="border rounded-circle"&gt;&lt;/span&gt;
+&lt;span class="border rounded-pill"&gt;&lt;/span&gt;</code></pre>
+                        </div>
+
+                        <h2 id="sombras" class="section-heading">Sombras</h2>
+                        <p>Bootstrap proporciona clases para agregar sombras a elementos.</p>
+
+                        <div class="example-preview">
+                            <div class="shadow-none p-3 mb-3 bg-light rounded">Sin sombra</div>
+                            <div class="shadow-sm p-3 mb-3 bg-dark rounded">Sombra pequeña</div>
+                            <div class="shadow p-3 mb-3 bg-dark rounded">Sombra regular</div>
+                            <div class="shadow-lg p-3 mb-3 bg-dark rounded">Sombra grande</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="shadow-none p-3 mb-3 bg-light rounded"&gt;Sin sombra&lt;/div&gt;
+&lt;div class="shadow-sm p-3 mb-3 bg-white rounded"&gt;Sombra pequeña&lt;/div&gt;
+&lt;div class="shadow p-3 mb-3 bg-white rounded"&gt;Sombra regular&lt;/div&gt;
+&lt;div class="shadow-lg p-3 mb-3 bg-white rounded"&gt;Sombra grande&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h2 id="sizing" class="section-heading">Sizing</h2>
+                        <p>Bootstrap proporciona clases para controlar el ancho y la altura de elementos.</p>
+
+                        <h3>Ancho</h3>
+                        <div class="example-preview">
+                            <div class="w-25 p-2 bg-primary text-white">Ancho 25%</div>
+                            <div class="w-50 p-2 bg-primary text-white">Ancho 50%</div>
+                            <div class="w-75 p-2 bg-primary text-white">Ancho 75%</div>
+                            <div class="w-100 p-2 bg-primary text-white">Ancho 100%</div>
+                            <div class="w-auto p-2 bg-primary text-white">Ancho auto</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="w-25"&gt;Ancho 25%&lt;/div&gt;
+&lt;div class="w-50"&gt;Ancho 50%&lt;/div&gt;
+&lt;div class="w-75"&gt;Ancho 75%&lt;/div&gt;
+&lt;div class="w-100"&gt;Ancho 100%&lt;/div&gt;
+&lt;div class="w-auto"&gt;Ancho auto&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Altura</h3>
+                        <div class="example-preview" style="height: 200px;">
+                            <div class="h-25 d-inline-block p-2 bg-primary text-white" style="width: 120px;">Altura 25%
+                            </div>
+                            <div class="h-50 d-inline-block p-2 bg-primary text-white" style="width: 120px;">Altura 50%
+                            </div>
+                            <div class="h-75 d-inline-block p-2 bg-primary text-white" style="width: 120px;">Altura 75%
+                            </div>
+                            <div class="h-100 d-inline-block p-2 bg-primary text-white" style="width: 120px;">Altura
+                                100%</div>
+                            <div class="h-auto d-inline-block p-2 bg-primary text-white" style="width: 120px;">Altura
+                                auto</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="h-25"&gt;Altura 25%&lt;/div&gt;
+&lt;div class="h-50"&gt;Altura 50%&lt;/div&gt;
+&lt;div class="h-75"&gt;Altura 75%&lt;/div&gt;
+&lt;div class="h-100"&gt;Altura 100%&lt;/div&gt;
+&lt;div class="h-auto"&gt;Altura auto&lt;/div&gt;</code></pre>
+                        </div>
+                        <!-- FORMULARIOS -->
+                        <h2 id="formularios" class="section-heading">Formularios</h2>
+                        <p>Bootstrap proporciona estilos y componentes para crear formularios atractivos y funcionales.
+                        </p>
+
+                        <h3>Controles básicos</h3>
+                        <div class="example-preview">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="exampleInput1" class="form-label">Dirección de email</label>
+                                    <input type="email" class="form-control" id="exampleInput1"
+                                        placeholder="name@example.com">
+                                    <div class="form-text text-muted">Nunca compartiremos tu email con nadie más.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInput2" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="exampleInput2">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleSelect" class="form-label">Ejemplo de select</label>
+                                    <select class="form-select" id="exampleSelect">
+                                        <option selected>Selecciona una opción</option>
+                                        <option value="1">Uno</option>
+                                        <option value="2">Dos</option>
+                                        <option value="3">Tres</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleTextarea" class="form-label">Ejemplo de textarea</label>
+                                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;form&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInput1" class="form-label"&gt;Dirección de email&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="exampleInput1" placeholder="name@example.com"&gt;
+    &lt;div class="form-text text-muted"&gt;Nunca compartiremos tu email con nadie más.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInput2" class="form-label"&gt;Contraseña&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="exampleInput2"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleSelect" class="form-label"&gt;Ejemplo de select&lt;/label&gt;
+    &lt;select class="form-select" id="exampleSelect"&gt;
+      &lt;option selected&gt;Selecciona una opción&lt;/option&gt;
+      &lt;option value="1"&gt;Uno&lt;/option&gt;
+      &lt;option value="2"&gt;Dos&lt;/option&gt;
+      &lt;option value="3"&gt;Tres&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleTextarea" class="form-label"&gt;Ejemplo de textarea&lt;/label&gt;
+    &lt;textarea class="form-control" id="exampleTextarea" rows="3"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+
+                        <h3>Checks y radios</h3>
+                        <div class="example-preview">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Checkbox por defecto
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Checkbox marcado
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Radio por defecto
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Radio seleccionado por defecto
+                                </label>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"&gt;
+  &lt;label class="form-check-label" for="flexCheckDefault"&gt;
+    Checkbox por defecto
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked&gt;
+  &lt;label class="form-check-label" for="flexCheckChecked"&gt;
+    Checkbox marcado
+  &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"&gt;
+  &lt;label class="form-check-label" for="flexRadioDefault1"&gt;
+    Radio por defecto
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked&gt;
+  &lt;label class="form-check-label" for="flexRadioDefault2"&gt;
+    Radio seleccionado por defecto
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Switches</h3>
+                        <div class="example-preview">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Switch por defecto</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Switch marcado</label>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="form-check form-switch"&gt;
+  &lt;input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"&gt;
+  &lt;label class="form-check-label" for="flexSwitchCheckDefault"&gt;Switch por defecto&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check form-switch"&gt;
+  &lt;input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked&gt;
+  &lt;label class="form-check-label" for="flexSwitchCheckChecked"&gt;Switch marcado&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>Tamaños de controles</h3>
+                        <div class="example-preview">
+                            <input class="form-control form-control-lg mb-2" type="text" placeholder="Input grande"
+                                aria-label="input grande">
+                            <input class="form-control mb-2" type="text" placeholder="Input normal"
+                                aria-label="input normal">
+                            <input class="form-control form-control-sm" type="text" placeholder="Input pequeño"
+                                aria-label="input pequeño">
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;input class="form-control form-control-lg" type="text" placeholder="Input grande"&gt;
+&lt;input class="form-control" type="text" placeholder="Input normal"&gt;
+&lt;input class="form-control form-control-sm" type="text" placeholder="Input pequeño"&gt;</code></pre>
+                        </div>
+
+                        <h3>Validación de formularios</h3>
+                        <div class="example-preview">
+                            <form class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="Mark"
+                                        required>
+                                    <div class="valid-feedback">
+                                        ¡Se ve bien!
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="validationCustom02" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value="Otto"
+                                        required>
+                                    <div class="valid-feedback">
+                                        ¡Se ve bien!
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="validationCustomUsername" class="form-label">Usuario</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        <input type="text" class="form-control" id="validationCustomUsername"
+                                            aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Por favor, elige un nombre de usuario.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
+                                            required>
+                                        <label class="form-check-label" for="invalidCheck">
+                                            Acepto los términos y condiciones
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Debes estar de acuerdo antes de enviar.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Enviar formulario</button>
+                            </form>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;form class="needs-validation" novalidate&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="validationCustom01" class="form-label"&gt;Nombre&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="validationCustom01" value="Mark" required&gt;
+    &lt;div class="valid-feedback"&gt;
+      ¡Se ve bien!
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="validationCustom02" class="form-label"&gt;Apellido&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="validationCustom02" value="Otto" required&gt;
+    &lt;div class="valid-feedback"&gt;
+      ¡Se ve bien!
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="validationCustomUsername" class="form-label"&gt;Usuario&lt;/label&gt;
+    &lt;div class="input-group has-validation"&gt;
+      &lt;span class="input-group-text" id="inputGroupPrepend"&gt;@&lt;/span&gt;
+      &lt;input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required&gt;
+      &lt;div class="invalid-feedback"&gt;
+        Por favor, elige un nombre de usuario.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;div class="form-check"&gt;
+      &lt;input class="form-check-input" type="checkbox" value="" id="invalidCheck" required&gt;
+      &lt;label class="form-check-label" for="invalidCheck"&gt;
+        Acepto los términos y condiciones
+      &lt;/label&gt;
+      &lt;div class="invalid-feedback"&gt;
+        Debes estar de acuerdo antes de enviar.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-primary" type="submit"&gt;Enviar formulario&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+// Ejemplo de JavaScript para deshabilitar el envío del formulario si hay campos inválidos
+(function () {
+  'use strict'
+
+  // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Bucle sobre ellos y prevenir el envío
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <!-- TABLAS -->
+                        <h2 id="tablas" class="section-heading">Tablas</h2>
+                        <p>Bootstrap ofrece estilos para tablas que mejoran su apariencia y legibilidad.</p>
+
+                        <h3>Tabla básica</h3>
+                        <div class="example-preview">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;table class="table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;#&lt;/th&gt;
+      &lt;th scope="col"&gt;Nombre&lt;/th&gt;
+      &lt;th scope="col"&gt;Apellido&lt;/th&gt;
+      &lt;th scope="col"&gt;Usuario&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;1&lt;/th&gt;
+      &lt;td&gt;Mark&lt;/td&gt;
+      &lt;td&gt;Otto&lt;/td&gt;
+      &lt;td&gt;@mdo&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;2&lt;/th&gt;
+      &lt;td&gt;Jacob&lt;/td&gt;
+      &lt;td&gt;Thornton&lt;/td&gt;
+      &lt;td&gt;@fat&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;3&lt;/th&gt;
+      &lt;td&gt;Larry&lt;/td&gt;
+      &lt;td&gt;the Bird&lt;/td&gt;
+      &lt;td&gt;@twitter&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+
+                        <h3>Variantes de tablas</h3>
+                        <div class="example-preview">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-striped mt-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- Tabla oscura --&gt;
+&lt;table class="table table-dark"&gt;
+  &lt;!-- Contenido de la tabla --&gt;
+&lt;/table&gt;
+
+&lt;!-- Tabla con filas alternas --&gt;
+&lt;table class="table table-striped"&gt;
+  &lt;!-- Contenido de la tabla --&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+
+                        <h3>Tabla con bordes</h3>
+                        <div class="example-preview">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;table class="table table-bordered"&gt;
+  &lt;!-- Contenido de la tabla --&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+
+                        <h3>Tabla responsive</h3>
+                        <div class="example-preview">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Encabezado 1</th>
+                                            <th scope="col">Encabezado 2</th>
+                                            <th scope="col">Encabezado 3</th>
+                                            <th scope="col">Encabezado 4</th>
+                                            <th scope="col">Encabezado 5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                            <td>Celda</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="table-responsive"&gt;
+  &lt;table class="table"&gt;
+    &lt;!-- Contenido de la tabla --&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <!-- COMPONENTES DE NAVEGACIÓN -->
+                        <h2 id="navegacion" class="section-heading">Componentes de Navegación</h2>
+
+                        <h3 id="breadcrumbs">Breadcrumbs</h3>
+                        <p>Los breadcrumbs o "migas de pan" indican la ubicación actual de la página dentro de una
+                            jerarquía de navegación.</p>
+                        <div class="example-preview">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Biblioteca</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Datos</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;nav aria-label="breadcrumb"&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Biblioteca&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="breadcrumb-item active" aria-current="page"&gt;Datos&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="pagination">Paginación</h3>
+                        <p>La paginación permite navegar a través de múltiples páginas de contenido.</p>
+                        <div class="example-preview">
+                            <nav aria-label="Ejemplo de paginación">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;nav aria-label="Ejemplo de paginación"&gt;
+  &lt;ul class="pagination"&gt;
+    &lt;li class="page-item disabled"&gt;
+      &lt;a class="page-link" href="#" tabindex="-1" aria-disabled="true"&gt;Anterior&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item active" aria-current="page"&gt;
+      &lt;a class="page-link" href="#"&gt;2&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;
+      &lt;a class="page-link" href="#"&gt;Siguiente&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="tabs">Tabs y Pills</h3>
+                        <p>Las pestañas y pills permiten organizar el contenido en diferentes secciones.</p>
+                        <div class="example-preview">
+                            <ul class="nav nav-tabs mb-3">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Activo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Enlace</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Enlace</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1"
+                                        aria-disabled="true">Desactivado</a>
+                                </li>
+                            </ul>
+
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Activo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Enlace</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Enlace</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1"
+                                        aria-disabled="true">Desactivado</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- Tabs --&gt;
+&lt;ul class="nav nav-tabs"&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link active" aria-current="page" href="#"&gt;Activo&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;Enlace&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;Enlace&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"&gt;Desactivado&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Pills --&gt;
+&lt;ul class="nav nav-pills"&gt
+&lt;ul class="nav nav-pills"&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link active" aria-current="page" href="#"&gt;Activo&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;Enlace&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;Enlace&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"&gt;Desactivado&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+
+                        <!-- COMPONENTES INTERACTIVOS -->
+                        <h2 id="componentes-interactivos" class="section-heading">Componentes Interactivos</h2>
+
+                        <h3 id="accordion">Accordion</h3>
+                        <p>El acordeón muestra u oculta contenido en paneles colapsables.</p>
+                        <div class="example-preview">
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Elemento de acordeón #1
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            Este es el cuerpo del primer elemento de acordeón. Está mostrado por
+                                            defecto, gracias a la clase <code>.show</code> añadida a la clase de colapso
+                                            del acordeón.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            Elemento de acordeón #2
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            Este es el cuerpo del segundo elemento de acordeón. Está oculto por defecto,
+                                            hasta que la clase de colapso lo muestra.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="accordion" id="accordionExample"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header" id="headingOne"&gt;
+      &lt;button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"&gt;
+        Elemento de acordeón #1
+      &lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"&gt;
+      &lt;div class="accordion-body"&gt;
+        Este es el cuerpo del primer elemento de acordeón.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header" id="headingTwo"&gt;
+      &lt;button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"&gt;
+        Elemento de acordeón #2
+      &lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample"&gt;
+      &lt;div class="accordion-body"&gt;
+        Este es el cuerpo del segundo elemento de acordeón.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="carousel">Carousel</h3>
+                        <p>El carrusel es un componente de presentación de diapositivas para recorrer elementos.</p>
+                        <div class="example-preview">
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex align-items-center justify-content-center bg-dark"
+                                            style="height: 200px;">
+                                            <h5 class="text-white">Primera diapositiva</h5>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex align-items-center justify-content-center bg-secondary"
+                                            style="height: 200px;">
+                                            <h5 class="text-white">Segunda diapositiva</h5>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex align-items-center justify-content-center bg-primary"
+                                            style="height: 200px;">
+                                            <h5 class="text-white">Tercera diapositiva</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"&gt;
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..."&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..."&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..."&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"&gt;
+    &lt;span class="carousel-control-prev-icon" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Anterior&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"&gt;
+    &lt;span class="carousel-control-next-icon" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Siguiente&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="collapse">Collapse</h3>
+                        <p>El componente collapse permite mostrar y ocultar contenido.</p>
+                        <div class="example-preview">
+                            <p>
+                                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample"
+                                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Enlace con data-bs-target
+                                </a>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Botón con data-bs-target
+                                </button>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    Algún contenido de marcador de posición para el componente de colapso. Este panel
+                                    está oculto por defecto pero se revela cuando el usuario activa el disparador.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p&gt;
+  &lt;a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"&gt;
+    Enlace con data-bs-target
+  &lt;/a&gt;
+  &lt;button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"&gt;
+    Botón con data-bs-target
+  &lt;/button&gt;
+&lt;/p&gt;
+&lt;div class="collapse" id="collapseExample"&gt;
+  &lt;div class="card card-body"&gt;
+    Algún contenido de marcador de posición para el componente de colapso.
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="dropdowns">Dropdowns</h3>
+                        <p>Los dropdowns son menús contextuales para mostrar enlaces u otras opciones.</p>
+                        <div class="example-preview">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Botón Dropdown
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Acción</a></li>
+                                    <li><a class="dropdown-item" href="#">Otra acción</a></li>
+                                    <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"&gt;
+    Botón Dropdown
+  &lt;/button&gt;
+  &lt;ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Acción&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Otra acción&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Algo más aquí&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="tooltips">Tooltips</h3>
+                        <p>Los tooltips muestran información adicional cuando el usuario pasa el cursor sobre un
+                            elemento.</p>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Tooltip en la parte superior">
+                                Tooltip en top
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                data-bs-placement="right" title="Tooltip en la derecha">
+                                Tooltip en right
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" title="Tooltip en la parte inferior">
+                                Tooltip en bottom
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                data-bs-placement="left" title="Tooltip en la izquierda">
+                                Tooltip en left
+                            </button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip en la parte superior"&gt;
+  Tooltip en top
+&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip en la derecha"&gt;
+  Tooltip en right
+&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip en la parte inferior"&gt;
+  Tooltip en bottom
+&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip en la izquierda"&gt;
+  Tooltip en left
+&lt;/button&gt;
+
+&lt;script&gt;
+// Inicializar todos los tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <h3 id="popovers">Popovers</h3>
+                        <p>Los popovers son pequeñas ventanas emergentes que muestran contenido adicional.</p>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover"
+                                title="Título del Popover"
+                                data-bs-content="Y aquí hay contenido sorprendente. Es muy atractivo.">Haz clic para
+                                activar</button>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Título del Popover" data-bs-content="Y aquí hay contenido sorprendente. Es muy atractivo."&gt;Haz clic para activar&lt;/button&gt;
+
+&lt;script&gt;
+// Inicializar todos los popovers
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <h3 id="toasts">Toasts</h3>
+                        <p>Los toasts son notificaciones ligeras similares a las que se ven en aplicaciones móviles y de
+                            escritorio.</p>
+                        <div class="example-preview">
+                            <button type="button" class="btn btn-primary" id="liveToastBtn">Mostrar toast en
+                                vivo</button>
+
+                            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="toast-header">
+                                        <div class="rounded me-2 bg-primary" style="width: 20px; height: 20px;"></div>
+                                        <strong class="me-auto">Bootstrap</strong>
+                                        <small>Hace 11 minutos</small>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="toast-body">
+                                        ¡Hola, mundo! Este es un mensaje de toast.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;button type="button" class="btn btn-primary" id="liveToastBtn"&gt;Mostrar toast en vivo&lt;/button&gt;
+
+&lt;div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"&gt;
+  &lt;div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"&gt;
+    &lt;div class="toast-header"&gt;
+      &lt;div class="rounded me-2 bg-primary" style="width: 20px; height: 20px;"&gt;&lt;/div&gt;
+      &lt;strong class="me-auto"&gt;Bootstrap&lt;/strong&gt;
+      &lt;small&gt;Hace 11 minutos&lt;/small&gt;
+      &lt;button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="toast-body"&gt;
+      ¡Hola, mundo! Este es un mensaje de toast.
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var toastTrigger = document.getElementById('liveToastBtn')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', function () {
+    var toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+  })
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <!-- BOOTSTRAP ICONS -->
+                        <h2 id="iconos" class="section-heading">Bootstrap Icons</h2>
+                        <p>Bootstrap Icons es una biblioteca de iconos SVG gratuita y de código abierto con más de 1,300
+                            iconos.</p>
+
+                        <h3>Cómo usar Bootstrap Icons</h3>
+                        <div class="example-preview">
+                            <i class="bi bi-alarm"></i>
+                            <i class="bi bi-cloud-download"></i>
+                            <i class="bi bi-calendar-date"></i>
+                            <i class="bi bi-camera"></i>
+                            <i class="bi bi-envelope"></i>
+                            <i class="bi bi-geo-alt"></i>
+                            <i class="bi bi-heart"></i>
+                            <i class="bi bi-house"></i>
+                            <i class="bi bi-pencil"></i>
+                            <i class="bi bi-person"></i>
+                            <i class="bi bi-search"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;!-- Incluir la biblioteca de Bootstrap Icons --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;
+
+&lt;!-- Usar iconos como elementos i --&gt;
+&lt;i class="bi bi-alarm"&gt;&lt;/i&gt;
+&lt;i class="bi bi-cloud-download"&gt;&lt;/i&gt;
+&lt;i class="bi bi-calendar-date"&gt;&lt;/i&gt;
+&lt;i class="bi bi-camera"&gt;&lt;/i&gt;
+&lt;i class="bi bi-envelope"&gt;&lt;/i&gt;
+&lt;i class="bi bi-geo-alt"&gt;&lt;/i&gt;
+&lt;i class="bi bi-heart"&gt;&lt;/i&gt;
+&lt;i class="bi bi-house"&gt;&lt;/i&gt;
+&lt;i class="bi bi-pencil"&gt;&lt;/i&gt;
+&lt;i class="bi bi-person"&gt;&lt;/i&gt;
+&lt;i class="bi bi-search"&gt;&lt;/i&gt;
+&lt;i class="bi bi-star"&gt;&lt;/i&gt;</code></pre>
+                        </div>
+
+                        <h3>Tamaños de iconos</h3>
+                        <div class="example-preview">
+                            <i class="bi bi-alarm fs-1"></i>
+                            <i class="bi bi-alarm fs-2"></i>
+                            <i class="bi bi-alarm fs-3"></i>
+                            <i class="bi bi-alarm fs-4"></i>
+                            <i class="bi bi-alarm fs-5"></i>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;i class="bi bi-alarm fs-1"&gt;&lt;/i&gt; &lt;!-- Extra grande --&gt;
+&lt;i class="bi bi-alarm fs-2"&gt;&lt;/i&gt; &lt;!-- Grande --&gt;
+&lt;i class="bi bi-alarm fs-3"&gt;&lt;/i&gt; &lt;!-- Mediano --&gt;
+&lt;i class="bi bi-alarm fs-4"&gt;&lt;/i&gt; &lt;!-- Pequeño --&gt;
+&lt;i class="bi bi-alarm fs-5"&gt;&lt;/i&gt; &lt;!-- Extra pequeño --&gt;</code></pre>
+                        </div>
+
+                        <!-- HELPERS -->
+                        <h2 id="helpers" class="section-heading">Helpers</h2>
+                        <p>Los helpers son utilidades que ayudan con tareas comunes de estilo.</p>
+
+                        <h3 id="clearfix">Clearfix</h3>
+                        <p>Clearfix es un helper que asegura que un elemento contenedor se expanda para incluir
+                            elementos flotantes.</p>
+                        <div class="example-preview">
+                            <div class="bg-light clearfix">
+                                <button type="button" class="btn btn-secondary float-start">Botón flotante a la
+                                    izquierda</button>
+                                <button type="button" class="btn btn-secondary float-end">Botón flotante a la
+                                    derecha</button>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="clearfix"&gt;
+  &lt;button type="button" class="btn btn-secondary float-start"&gt;Botón flotante a la izquierda&lt;/button&gt;
+  &lt;button type="button" class="btn btn-secondary float-end"&gt;Botón flotante a la derecha&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="ratio">Ratio</h3>
+                        <p>El helper ratio mantiene un aspecto de relación constante para elementos como videos e
+                            iframes.</p>
+                        <div class="example-preview">
+                            <div class="ratio ratio-16x9">
+                                <div class="d-flex align-items-center justify-content-center bg-dark text-white">
+                                    Contenedor 16:9</div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="ratio ratio-16x9"&gt;
+  &lt;iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="visually-hidden">Visually Hidden</h3>
+                        <p>El helper visually-hidden oculta elementos visualmente pero los mantiene accesibles para
+                            tecnologías de asistencia.</p>
+                        <div class="example-preview">
+                            <h2 class="visually-hidden">Título oculto (solo visible para lectores de pantalla)</h2>
+                            <p>El título anterior está oculto visualmente pero es accesible para lectores de pantalla.
+                            </p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;h2 class="visually-hidden"&gt;Título oculto (solo visible para lectores de pantalla)&lt;/h2&gt;</code></pre>
+                        </div>
+
+                        <h3 id="stretched-link">Stretched Link</h3>
+                        <p>El helper stretched-link hace que un enlace cubra todo su elemento contenedor.</p>
+                        <div class="example-preview">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card con stretched link</h5>
+                                    <p class="card-text">Un ejemplo de cómo usar la clase stretched-link en un enlace
+                                        dentro de una card.</p>
+                                    <a href="#" class="btn btn-primary stretched-link">Ir a algún lado</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card con stretched link&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Un ejemplo de cómo usar la clase stretched-link en un enlace dentro de una card.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary stretched-link"&gt;Ir a algún lado&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <!-- UTILITIES ADICIONALES -->
+                        <h2 id="utilities-adicionales" class="section-heading">Utilities Adicionales</h2>
+
+                        <h3 id="overflow">Overflow</h3>
+                        <p>Las utilidades de overflow controlan cómo se maneja el contenido que desborda su contenedor.
+                        </p>
+                        <div class="example-preview">
+                            <div class="overflow-auto p-3 bg-light" style="max-width: 260px; max-height: 100px;">
+                                Este es un ejemplo de texto que se desborda de su contenedor. El contenedor tiene una
+                                altura y anchura máxima, y la clase overflow-auto añade barras de desplazamiento cuando
+                                es necesario.
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="overflow-auto"&gt;...&lt;/div&gt;
+&lt;div class="overflow-hidden"&gt;...&lt;/div&gt;
+&lt;div class="overflow-visible"&gt;...&lt;/div&gt;
+&lt;div class="overflow-scroll"&gt;...&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="opacity">Opacity</h3>
+                        <p>Las utilidades de opacidad controlan la transparencia de los elementos.</p>
+                        <div class="example-preview">
+                            <div class="bg-primary text-white p-2">Opacidad 100%</div>
+                            <div class="bg-primary text-white p-2 opacity-75">Opacidad 75%</div>
+                            <div class="bg-primary text-white p-2 opacity-50">Opacidad 50%</div>
+                            <div class="bg-primary text-white p-2 opacity-25">Opacidad 25%</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="opacity-100"&gt;Opacidad 100%&lt;/div&gt;
+&lt;div class="opacity-75"&gt;Opacidad 75%&lt;/div&gt;
+&lt;div class="opacity-50"&gt;Opacidad 50%&lt;/div&gt;
+&lt;div class="opacity-25"&gt;Opacidad 25%&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="float">Float</h3 <h3 id="float">Float</h3>
+                        <p>Las utilidades de float permiten posicionar elementos a la izquierda o derecha de su
+                            contenedor.</p>
+                        <div class="example-preview">
+                            <div class="float-start">Float start en todos los tamaños de viewport</div><br>
+                            <div class="float-end">Float end en todos los tamaños de viewport</div><br>
+                            <div class="float-none">Sin float en todos los tamaños de viewport</div>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;div class="float-start"&gt;Float start en todos los tamaños de viewport&lt;/div&gt;
+&lt;div class="float-end"&gt;Float end en todos los tamaños de viewport&lt;/div&gt;
+&lt;div class="float-none"&gt;Sin float en todos los tamaños de viewport&lt;/div&gt;
+
+&lt;!-- Responsive floats --&gt;
+&lt;div class="float-sm-start"&gt;Float start en viewports sm o más grandes&lt;/div&gt;
+&lt;div class="float-md-start"&gt;Float start en viewports md o más grandes&lt;/div&gt;
+&lt;div class="float-lg-start"&gt;Float start en viewports lg o más grandes&lt;/div&gt;
+&lt;div class="float-xl-start"&gt;Float start en viewports xl o más grandes&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="interacciones">Interacciones</h3>
+                        <p>Las utilidades de interacción controlan cómo los usuarios pueden interactuar con el
+                            contenido.</p>
+                        <div class="example-preview">
+                            <p class="user-select-all">Este texto será seleccionado completamente cuando el usuario haga
+                                clic en él.</p>
+                            <p class="user-select-none">Este texto no se puede seleccionar.</p>
+                            <p><a href="#" class="pe-none" tabindex="-1" aria-disabled="true">Este enlace</a> no se
+                                puede clicar (pe-none).</p>
+                            <p><a href="#" class="pe-auto">Este enlace</a> se puede clicar (pe-auto).</p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-html">&lt;p class="user-select-all"&gt;Este texto será seleccionado completamente cuando el usuario haga clic en él.&lt;/p&gt;
+&lt;p class="user-select-none"&gt;Este texto no se puede seleccionar.&lt;/p&gt;
+&lt;p&gt;&lt;a href="#" class="pe-none" tabindex="-1" aria-disabled="true"&gt;Este enlace&lt;/a&gt; no se puede clicar (pe-none).&lt;/p&gt;
+&lt;p&gt;&lt;a href="#" class="pe-auto"&gt;Este enlace&lt;/a&gt; se puede clicar (pe-auto).&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <!-- PERSONALIZACIÓN -->
+                        <h2 id="personalizacion" class="section-heading">Personalización de Bootstrap</h2>
+                        <p>Bootstrap puede personalizarse para adaptarse a tus necesidades específicas.</p>
+
+                        <h3>Usando variables CSS</h3>
+                        <div class="example-preview">
+                            <p>Bootstrap 5 utiliza variables CSS que puedes sobrescribir para personalizar el framework.
+                            </p>
+                        </div>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-css">/* Sobrescribir variables CSS de Bootstrap */
+:root {
+  --bs-blue: #0073e6;
+  --bs-primary: #0073e6;
+  --bs-border-radius: 0.5rem;
+  --bs-body-font-family: 'Open Sans', sans-serif;
+}</code></pre>
+                        </div>
+
+                        <h3>Usando Sass</h3>
+                        <p>Para personalización avanzada, Bootstrap utiliza Sass, lo que permite mayor flexibilidad.</p>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-scss">// Personalizar variables de Sass de Bootstrap
+$primary: #0073e6;
+$border-radius: 0.5rem;
+$font-family-base: 'Open Sans', sans-serif;
+
+// Importar Bootstrap
+@import "bootstrap/scss/bootstrap";</code></pre>
+                        </div>
+
+                        <h3>Sobrescribir clases de Bootstrap</h3>
+                        <p>También puedes sobrescribir clases específicas de Bootstrap con tu propio CSS.</p>
+                        <div class="code-preview">
+                            <button class="btn btn-sm btn-primary code-copy-button"
+                                onclick="copyCode(this)">Copiar</button>
+                            <pre><code class="language-css">/* Sobrescribir el estilo de los botones */
+.btn-primary {
+  background-color: #0073e6;
+  border-color: #0073e6;
+}
+
+.btn-primary:hover {
+  background-color: #0059b3;
+  border-color: #0059b3;
+}</code></pre>
+                        </div>
+
+                        <!-- CONCLUSIÓN -->
+                        <h2 id="conclusion" class="section-heading">Conclusión</h2>
+                        <p>Bootstrap 5 es un framework potente y flexible que facilita la creación de sitios web
+                            responsivos y modernos. Con sus componentes prediseñados, sistema de grid, utilidades y
+                            opciones de personalización, Bootstrap puede acelerar significativamente tu flujo de trabajo
+                            de desarrollo web.</p>
+
+                        <h3>Recursos adicionales</h3>
+                        <ul>
+                            <li><a href="https://getbootstrap.com/docs/5.3/" target="_blank">Documentación oficial de
+                                    Bootstrap</a></li>
+                            <li><a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a></li>
+                            <li><a href="https://themes.getbootstrap.com/" target="_blank">Temas de Bootstrap</a></li>
+                            <li><a href="https://blog.getbootstrap.com/" target="_blank">Blog oficial de Bootstrap</a>
+                            </li>
+                            <li><a href="https://github.com/twbs/bootstrap" target="_blank">Repositorio de GitHub de
+                                    Bootstrap</a></li>
+                        </ul>
+
+                    </section>
+                </main>
+            </div>
+
+            <!-- Tabla de contenidos derecha -->
+            <div class="col-lg-3">
+                <div class="bd-toc" id="TableOfContents">
+                    <h5 class="text-white mb-3">Contenido</h5>
+                    <nav id="TableOfContents">
+                        <div class="toc-section">Introducción</div>
+                        <div class="toc-subsection">
+                            <a class="toc-link" href="#que-es-bootstrap">¿Qué es Bootstrap?</a>
+                            <a class="toc-link" href="#instalacion">Instalación</a>
+                            <a class="toc-link" href="#breakpoints">Breakpoints</a>
+                        </div>
+
+                        <div class="toc-section">Layout</div>
+                        <div class="toc-subsection">
+                            <a class="toc-link" href="#contenedores">Contenedores</a>
+                            <a class="toc-link" href="#sistema-grid">Sistema Grid</a>
+                            <a class="toc-link" href="#columnas">Columnas</a>
+                            <a class="toc-link" href="#gutters">Gutters</a>
+                        </div>
+                        
+                        <div class="toc-section">Componentes</div>
+                        <div class="toc-subsection">
+                            <a class="toc-link" href="#alertas">Alertas</a>
+                            <a class="toc-link" href="#botones">Botones</a>
+                            <a class="toc-link" href="#cards">Cards</a>
+                            <a class="toc-link" href="#navbar">Navbar</a>
+                            <a class="toc-link" href="#modals">Modals</a>
+                            <a class="toc-link" href="#formularios">Formularios</a>
+                            <a class="toc-link" href="#tablas">Tablas</a>
+                            <a class="toc-link" href="#navegacion">Navegación</a>
+                            <a class="toc-link" href="#componentes-interactivos">Componentes Interactivos</a>
+                        </div>
+
+                        <div class="toc-section">Iconos y Helpers</div>
+                        <div class="toc-subsection">
+                            <a class="toc-link" href="#iconos">Bootstrap Icons</a>
+                            <a class="toc-link" href="#helpers">Helpers</a>
+                            <a class="toc-link" href="#utilities-adicionales">Utilities Adicionales</a>
+                            <a class="toc-link" href="#personalizacion">Personalización</a>
+                        </div>
+                        
+                        
+                        <div class="toc-section">Utilidades</div>
+                        <div class="toc-subsection">
+                            <a class="toc-link" href="#espaciado">Espaciado</a>
+                            <a class="toc-link" href="#colores">Colores</a>
+                            <a class="toc-link" href="#flex">Flex</a>
+                            <a class="toc-link" href="#display">Display</a>
+                            <a class="toc-link" href="#posicionamiento">Posicionamiento</a>
+                            <a class="toc-link" href="#texto">Texto</a>
+                            <a class="toc-link" href="#bordes">Bordes</a>
+                            <a class="toc-link" href="#sombras">Sombras</a>
+                            <a class="toc-link" href="#sizing">Sizing</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="py-4" style="background-color: #1a1a1a;">
+        <div class="container">
+            <p class="text-center text-muted mb-0">© 2023 Documentación Bootstrap 5</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Prism JS para resaltado de código -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <script>
+        // Función para copiar código
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(code).then(() => {
+                // Cambia el texto del botón temporalmente
+                const originalText = button.innerText;
+                button.innerText = "¡Copiado!";
+
+                // Vuelve al texto original después de 2 segundos
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el código:', err);
+            });
+        }
+
+        // Activar los enlaces de la tabla de contenidos según el scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('section h2, section h3');
+            const tocLinks = document.querySelectorAll('.toc-link');
+
+            function updateActiveLink() {
+                let currentSection = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+
+                    if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1);
+
+                    if (href === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+        });
+    </script>
+</body>
+
+</html>
